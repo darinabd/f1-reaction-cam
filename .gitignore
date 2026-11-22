@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.venvs/
+.vscode/
+.env
+.env.*
+*.backup
+*.before-*
+/data/
+/models/
+/assets/memes/*
+!/assets/memes/.gitkeep
