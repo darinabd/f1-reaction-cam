@@ -1,27 +1,60 @@
-# F1 Reaction Cam 🏁
+<div align="center">
 
-F1-themed desktop app that matches webcam expressions, hand gestures and poses to your own images and videos. Driver Academy is a separate training mode. Camera frames are processed locally. Trained samples are saved as feature vectors on your Mac.
+# 🏁 F1 Reaction Cam
 
-## Setup on Intel Mac
+**Your expression. Your gesture. Your race-day reaction.**
 
-Use macOS 12 or later and Python 3.11. From the project folder:
+`Python 3.11` · `MediaPipe` · `OpenCV` · `PySide6` · `Intel macOS`
 
-```bash
-bash install.command
-bash launch.command --train
-```
+[Features](#features) · [Quick start](#quick-start) · [Under the hood](#under-the-hood) · [Checks](#checks)
 
-The installer creates an environment in `~/.venvs/f1-reaction-cam` and downloads the MediaPipe models over HTTPS. Allow your terminal app to access the camera in macOS Privacy & Security settings.
+</div>
 
-Put JPG, PNG, MP4 or MOV files in `assets/memes/` or pass `--media "/path/to/memes"`. If `~/Desktop/training/f1 meme` exists, the app uses it by default. Supply media you have permission to use.
+---
 
-Record your neutral expression first. Pick a meme and press Space to capture a sample. Repeat with other expressions or gestures. Close training before starting the live window:
+An F1-themed desktop app that turns webcam expressions, hand gestures, and poses into your own reaction clips. Teach it a reaction in **Driver Academy**, then see it play back in the **Live Cam**.
 
-```bash
-bash launch.command
-```
+## Features
 
-Saved reactions and preferences are in `data/`. To carry your training to another local copy, copy `data/` and keep the media filenames and relative paths the same.
+| Mode | What you can do |
+| --- | --- |
+| **Driver Academy** | Pair a face expression, hand gesture, or pose with a meme and record training samples. |
+| **Live Cam** | See your camera and the matched reaction side by side. Play images or video clips with adjustable sound. |
+
+Camera frames are processed locally. Saved samples contain numeric features for matching reactions.
+
+## Quick start
+
+**Requirements** · Intel Mac, macOS 12 or later, Python 3.11, and a webcam.
+
+1. **Install.** From the project folder, run:
+   ```bash
+   bash install.command
+   ```
+   This installs dependencies in `~/.venvs/f1-reaction-cam` and downloads the MediaPipe models over HTTPS. Allow your terminal app to access the camera under **Privacy & Security → Camera** on macOS.
+
+2. **Add media.** Place JPG, PNG, MP4, or MOV files you have permission to use in `assets/memes/`. If `~/Desktop/training/f1 meme` exists, it takes priority. Use `--media "/path/to/memes"` with either launch mode to choose a different folder.
+
+3. **Train.** Open **Driver Academy**, record a neutral expression, then select a meme and press **Space** to capture a sample. Repeat for your other reactions.
+   ```bash
+   bash launch.command --train
+   ```
+
+4. **Go live.** Close Driver Academy and launch the live window.
+   ```bash
+   bash launch.command
+   ```
+
+## Under the hood
+
+| Component | What it handles |
+| --- | --- |
+| **OpenCV** | Webcam capture |
+| **MediaPipe** | Face, hand, and pose features |
+| **NumPy** | Matching live features against saved samples |
+| **PySide6** | Desktop UI and media playback |
+
+Reactions and preferences live in `data/`. To transfer your training to another local copy, copy `data/` and preserve the media filenames and relative paths. The repository excludes personal media, training data, preferences, downloaded models, and virtual environments.
 
 ## Checks
 
@@ -30,6 +63,8 @@ Saved reactions and preferences are in `data/`. To carry your training to anothe
 "$HOME/.venvs/f1-reaction-cam/bin/python" diagnose.py --camera
 ```
 
-The optional playback test needs a MOV and a JPG in `assets/memes/`.
+The optional playback test uses a MOV and a JPG from `assets/memes/`.
 
-Personal media, trained samples, preferences, downloaded models and virtual environments are excluded from version control.
+---
+
+<p align="center"><sub>Unofficial Formula 1 fan project.</sub></p>
